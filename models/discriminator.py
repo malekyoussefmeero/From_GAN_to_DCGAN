@@ -4,12 +4,12 @@ from math import tanh
 import torch.nn as nn
 import torch
 class Discriminator(nn.Module):
-    def __init__(self,input_dim) -> None:
+    def __init__(self,input_dim,img_dim=3) -> None:
         super().__init__()
         self.network = nn.Sequential(
 
             # First bloc
-            nn.Conv2d(input_dim,64,4,2,1,bias=False),
+            nn.Conv2d(img_dim,input_dim,4,2,1,bias=False),
             nn.BatchNorm2d(64),
             nn.LeakyReLU(inplace=True),
 
@@ -30,7 +30,7 @@ class Discriminator(nn.Module):
 
             # Last bloc
             nn.Conv2d(512,1,4,1,0),
-            nn.Tanh()
+            nn.Sigmoid()
         )
 
     def forward(self, x):
