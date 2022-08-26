@@ -21,3 +21,4 @@ def weights_init(m):
 def get_noise(img_size,noise_dim):
     "Function that returns noise for generator input"
     return torch.randn(img_size, noise_dim, 1, 1)
+
